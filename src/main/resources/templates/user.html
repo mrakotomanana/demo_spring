@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Web Application</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <script th:src="@{/js/main.js}" type="text/javascript"></script>
+</head>
+<body>
+<div class="container">
+    <h2 class="h2">Liste des userss</h2>
+    <p>test en ligne <a href="/myapp/order/list?test=fixed&amp;jsessionid=23fa31abd41ea093">click</a></p>
+    <p>test en ligne <a th:href="@{/order/details(id=${orderId},type=${orderType})}">click</a></p>
+    <!-- lasa otran iti /order/details?id=&type= -->
+    <p>test en ligne <a th:text="${'one text'}">click</a></p>
+</div>
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr class="text-center">
+            <th>Nom</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-center" th:if="${users.empty}">
+            <td class="col-6">Aucun user en base de données</td>
+        </tr>
+        <tr th:each="user: ${users}">
+            <td class="text-center"><span th:text="${user?.name}"> Nom </span></td>
+            <td class="text-center"><span th:text="${user?.age}"> Age </span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
